@@ -1,1 +1,1 @@
-# booking_app
+# News_app
