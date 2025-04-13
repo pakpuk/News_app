@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/models/News_item_model.dart';
+import 'package:news_app/view/screens/news_details_page.dart';
 
 class CarsoulsliderWidget extends StatefulWidget {
   const CarsoulsliderWidget({super.key});
@@ -15,68 +17,72 @@ class _CarsoulsliderWidgetState extends State<CarsoulsliderWidget> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> imageSliders = newsItems
-        .map((item) => Container(
-              margin: EdgeInsets.all(5.0),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(24.0)),
-                  child: Stack(
-                    children: <Widget>[
-                      Image.network(item.imgurl,
-                          fit: BoxFit.cover, width: 1000.0),
-                      Positioned(
-                          top: 10,
-                          left: 20,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                item.category,
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          )),
-                      Positioned(
-                        bottom: 0.0,
-                        left: 0.0,
-                        right: 0.0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Text("${item.author}•${item.time}"),
-                            ),
-                            Container(
+        .map((item) => InkWell(
+              onTap: () => Navigator.of(context).push(CupertinoPageRoute(
+                  builder: (_) => NewsDetailsPage(newsItems: newsItems))),
+              child: Container(
+                margin: EdgeInsets.all(5.0),
+                child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(24.0)),
+                    child: Stack(
+                      children: <Widget>[
+                        Image.network(item.imgurl,
+                            fit: BoxFit.cover, width: 1000.0),
+                        Positioned(
+                            top: 10,
+                            left: 20,
+                            child: DecoratedBox(
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color.fromARGB(200, 0, 0, 0),
-                                    Color.fromARGB(0, 0, 0, 0)
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.all(10),
+                                child: Text(
+                                  item.category,
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 20.0),
-                              child: Text(
-                                item.title,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
+                            )),
+                        Positioned(
+                          bottom: 0.0,
+                          left: 0.0,
+                          right: 0.0,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                child: Text("${item.author}•${item.time}"),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color.fromARGB(200, 0, 0, 0),
+                                      Color.fromARGB(0, 0, 0, 0)
+                                    ],
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                  ),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 20.0),
+                                child: Text(
+                                  item.title,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  )),
+                      ],
+                    )),
+              ),
             ))
         .toList();
     return Column(

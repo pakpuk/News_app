@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/view/screens/home_page.dart';
+
+import 'package:news_app/view/widgets/custom_navbar_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +12,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-          useMaterial3: true,
+      debugShowCheckedModeBanner: false,
+      title: 'News App',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: Colors.black,
+          ),
         ),
-        home: HomePage());
+      ),
+      home: const CustomBottomNavBar(),
+    );
   }
 }
