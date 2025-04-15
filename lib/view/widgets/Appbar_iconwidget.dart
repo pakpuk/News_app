@@ -4,8 +4,14 @@ class AppbarIcon extends StatelessWidget {
   final IconData icon;
   final double size;
   final double iconsize;
-  const AppbarIcon(
-      {super.key, required this.icon, this.size = 40, this.iconsize = 30});
+  final VoidCallback? onTap;
+  const AppbarIcon({
+    super.key,
+    required this.icon,
+    this.size = 40,
+    this.iconsize = 30,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

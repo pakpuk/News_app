@@ -5,14 +5,36 @@ class NewsItemModel {
   final String author;
   final String category;
   final String time;
+  final bool isFavorite;
 
-  NewsItemModel(
-      {required this.title,
-      required this.id,
-      required this.imgurl,
-      required this.author,
-      required this.category,
-      required this.time});
+  NewsItemModel({
+    required this.title,
+    required this.id,
+    required this.imgurl,
+    required this.author,
+    required this.category,
+    required this.time,
+    this.isFavorite = false,
+  });
+  NewsItemModel copyWith({
+    int? id,
+    String? title,
+    String? imgurl,
+    String? category,
+    String? author,
+    String? time,
+    bool? isFavorite,
+  }) {
+    return NewsItemModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      imgurl: imgurl ?? this.imgurl,
+      category: category ?? this.category,
+      author: author ?? this.author,
+      time: time ?? this.time,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
+  }
 }
 
 List<NewsItemModel> newsItems = [

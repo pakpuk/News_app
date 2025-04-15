@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 16.0),
               const Hometitlewidget(title: 'Breaking News'),
               const SizedBox(height: 8.0),
-              const CarsoulsliderWidget(),
+              const CustomCarouselSlider(),
               const SizedBox(height: 16.0),
               const Hometitlewidget(title: 'Recommendation'),
               const SizedBox(height: 8.0),
@@ -34,14 +34,13 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child: InkWell(
                           onTap: () {
-                            final index = newsItem.indexOf(newsItem);
+                            final index = newsItems.indexOf(newsItem);
 
                             Navigator.of(context, rootNavigator: true)
                                 .push(
                                   CupertinoPageRoute(
                                     builder: (_) => NewsDetailsPage(
                                       index: index,
-                                      newsItems: newsItems,
                                     ),
                                   ),
                                 )
